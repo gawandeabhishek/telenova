@@ -26,7 +26,7 @@ const NotFound = () => {
           once
           className="max-w-2xl text-sm text-slate-400 md:text-xl"
         >
-          The page you're looking for doesn't exist or has been moved
+          The page you&apos;re looking for doesn&apos;t exist or has been moved
         </TextAnimate>
 
         <TextAnimate
