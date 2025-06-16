@@ -16,6 +16,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "./ui/drawer";
+import { signIn } from "next-auth/react";
 
 export const Navbar = () => {
   const brandName = "telenova";
@@ -69,15 +70,12 @@ export const Navbar = () => {
           ))}
         </ul>
 
-        <Link
-          href="/sign-in"
-          className={cn(
-            buttonVariants({ variant: "default" }),
-            "hidden sm:flex capitalize"
-          )}
+        <Button
+          onClick={() => signIn("google")}
+          className="hidden sm:flex capitalize cursor-pointer"
         >
           Try {brandName} <MoveRight className="size-4" />
-        </Link>
+        </Button>
 
         <div className="md:hidden">
           <Drawer>
