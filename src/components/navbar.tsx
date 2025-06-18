@@ -1,13 +1,13 @@
 "use client";
 
-import Image from "next/image";
-import { MaxWidthWrapper } from "./max-width-wrapper";
-import { Button, buttonVariants } from "./ui/button";
-import { MoveRight, PanelBottomOpen } from "lucide-react";
-import { useState } from "react";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
+import { MoveRight, PanelBottomOpen } from "lucide-react";
+import { signIn } from "next-auth/react";
+import Image from "next/image";
+import { useState } from "react";
 import { Link as ScrollLink } from "react-scroll";
+import { MaxWidthWrapper } from "./max-width-wrapper";
+import { Button } from "./ui/button";
 import {
   Drawer,
   DrawerClose,
@@ -16,7 +16,6 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "./ui/drawer";
-import { signIn } from "next-auth/react";
 
 export const Navbar = () => {
   const brandName = "telenova";
