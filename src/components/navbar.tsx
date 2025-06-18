@@ -71,7 +71,9 @@ export const Navbar = () => {
         </ul>
 
         <Button
-          onClick={() => signIn("google")}
+          onClick={async () =>
+            await signIn("google", { redirectTo: "/dashboard" })
+          }
           className="hidden sm:flex capitalize cursor-pointer"
         >
           Try {brandName} <MoveRight className="size-4" />
@@ -125,15 +127,14 @@ export const Navbar = () => {
                   </ul>
 
                   <DrawerClose asChild>
-                    <Link
-                      href="/sign-in"
-                      className={cn(
-                        buttonVariants({ variant: "default" }),
-                        "capitalize mx-auto px-10!"
-                      )}
+                    <Button
+                      onClick={async () =>
+                        await signIn("google", { redirectTo: "/dashboard" })
+                      }
+                      className="capitalize mx-auto px-10!"
                     >
                       Try {brandName} <MoveRight className="size-4" />
-                    </Link>
+                    </Button>
                   </DrawerClose>
                 </div>
               </div>
