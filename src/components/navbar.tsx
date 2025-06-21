@@ -2,12 +2,12 @@
 
 import { cn } from "@/lib/utils";
 import { MoveRight, PanelBottomOpen } from "lucide-react";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import { useState } from "react";
 import { Link as ScrollLink } from "react-scroll";
 import { MaxWidthWrapper } from "./max-width-wrapper";
-import { Button } from "./ui/button";
+import { Button, buttonVariants } from "./ui/button";
 import {
   Drawer,
   DrawerClose,
@@ -16,9 +16,11 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "./ui/drawer";
+import Link from "next/link";
 
 export const Navbar = () => {
   const brandName = "telenova";
+  const session = useSession();
   const [activeIcon, setActiveIcon] = useState<string | undefined>();
   return (
     <nav className="sticky top-0 bg-white/1 backdrop-blur-xl z-40">
@@ -69,14 +71,16 @@ export const Navbar = () => {
           ))}
         </ul>
 
-        <Button
-          onClick={async () =>
-            await signIn("google", { redirectTo: "/dashboard" })
-          }
-          className="hidden sm:flex capitalize cursor-pointer"
+        <Link
+          href={!session.data?.user ? "/auth/signin" : "/dashboard"}
+          className={cn(
+            buttonVariants({ variant: "default" }),
+            "hidden sm:flex capitalize cursor-pointer"
+          )}
         >
-          Try {brandName} <MoveRight className="size-4" />
-        </Button>
+          {!session.data?.user ? `Try ${brandName}` : "Dashboard"}{" "}
+          <MoveRight className="size-4" />
+        </Link>
 
         <div className="md:hidden">
           <Drawer>
@@ -126,14 +130,16 @@ export const Navbar = () => {
                   </ul>
 
                   <DrawerClose asChild>
-                    <Button
-                      onClick={async () =>
-                        await signIn("google", { redirectTo: "/dashboard" })
-                      }
-                      className="capitalize mx-auto px-10!"
+                    <Link
+                      href={!session.data?.user ? "/auth/signin" : "/dashboard"}
+                      className={cn(
+                        buttonVariants({ variant: "default" }),
+                        "capitalize mx-auto px-10!"
+                      )}
                     >
-                      Try {brandName} <MoveRight className="size-4" />
-                    </Button>
+                      {!session.data?.user ? `Try ${brandName}` : "Dashboard"}{" "}
+                      <MoveRight className="size-4" />
+                    </Link>
                   </DrawerClose>
                 </div>
               </div>

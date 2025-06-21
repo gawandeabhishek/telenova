@@ -3,8 +3,10 @@ import { TextAnimate } from "@/components/magicui/text-animate";
 import { MaxWidthWrapper } from "@/components/max-width-wrapper";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { auth } from "@/auth";
 
-const NotFound = () => {
+const NotFound = async () => {
+  const session = await auth();
   return (
     <main className="bg-black">
       <MaxWidthWrapper className="relative z-10 flex min-h-[100dvh] flex-col items-center justify-center px-4 py-24 text-center gap-4">
@@ -44,7 +46,7 @@ const NotFound = () => {
           size="lg"
           className="mt-6 bg-white text-black hover:bg-gray-200"
         >
-          <Link href="/">Return Home</Link>
+          <Link href={!session ? "/" : "/dashboard"}>Return Home</Link>
         </Button>
       </MaxWidthWrapper>
     </main>
