@@ -12,14 +12,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { cn } from "@/lib/utils";
-import { Code, LockKeyhole, Pencil, X } from "lucide-react";
-import Image from "next/image";
-import { useState } from "react";
-import { FaFacebook, FaTwitter, FaWhatsapp } from "react-icons/fa";
-import { MdOutlineEmail } from "react-icons/md";
-import TimePicker from "../_components/ui/time-picker";
-import { FaEarthAmericas } from "react-icons/fa6";
 import {
   Table,
   TableBody,
@@ -28,6 +20,14 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { cn } from "@/lib/utils";
+import { Code, LockKeyhole, X } from "lucide-react";
+import Image from "next/image";
+import { useState } from "react";
+import { FaFacebook, FaTwitter, FaWhatsapp } from "react-icons/fa";
+import { FaEarthAmericas } from "react-icons/fa6";
+import { MdOutlineEmail } from "react-icons/md";
+import TimePicker from "../_components/ui/time-picker";
 
 const Page = () => {
   const [selectedDate, setSelectedDate] = useState<{
@@ -105,6 +105,13 @@ const Page = () => {
         return "bg-gray-100 text-gray-600";
     }
   };
+
+  const [selectedTime, setSelectedTime] = useState<{
+    hour: number;
+    minute: number;
+    period: "AM" | "PM";
+  }>({ hour: 1, minute: 0, period: "AM" });
+
   return (
     <main className="bg-background">
       <MaxWidthWrapper className="flex flex-col gap-6 pb-10 max-h-[200dvh] sm:max-h-[130dvh] lg:max-h-[92.5dvh]">
@@ -209,7 +216,7 @@ const Page = () => {
               <h3 className="font-bold text-lg">Set time</h3>
               <div className="w-full h-px bg-slate-200" />
             </div>
-            <TimePicker />
+            <TimePicker value={selectedTime} onValueChange={setSelectedTime} />
             <div className="flex flex-col gap-4">
               <div className="w-full h-px bg-slate-200" />
               <div className="flex justify-end gap-2">

@@ -2,8 +2,9 @@
 
 import { cn } from "@/lib/utils";
 import { MoveRight, PanelBottomOpen } from "lucide-react";
-import { signIn, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import { Link as ScrollLink } from "react-scroll";
 import { MaxWidthWrapper } from "./max-width-wrapper";
@@ -16,7 +17,6 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "./ui/drawer";
-import Link from "next/link";
 
 export const Navbar = () => {
   const brandName = "telenova";
